@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+const GUIDES = [
+  { title: 'How the agent works', desc: 'What happens when you send a message, sidebar controls, and what is sent where.', href: SITE.guideHowItWorks },
+  { title: 'Skills — how to use them', desc: 'Built-in and custom skills, with examples for Study help, Revision, and Summarize.', href: SITE.guideSkills },
+  { title: 'AI providers', desc: 'Setup per provider, privacy notes, and protocol specifics.', href: SITE.guideProviders },
+] as const;
+
+const DEV = [
+  { title: 'End-to-end flow', desc: 'Request bodies, error handling, and troubleshooting at the code level.', href: `${SITE.docsDev}HowItWorks.md` },
+  { title: 'ChatView structure and model line', desc: 'Sidebar modules, system-prompt assembly, and the skill dropdown.', href: `${SITE.docsDev}ChatViewStructure.md` },
+  { title: 'Streaming', desc: 'How streaming, stopping, and the non-streaming fallback work.', href: `${SITE.docsDev}Streaming.md` },
+  { title: 'OllamaService reference', desc: 'The service layer behind every provider call.', href: `${SITE.docsDev}OllamaService.md` },
+  { title: 'Settings reference', desc: 'Stored shape, migration rules, and the settings-tab UI.', href: `${SITE.docsDev}Settings.md` },
+  { title: 'Markdown rendering', desc: 'How replies render as live Markdown.', href: `${SITE.docsDev}MarkdownRendering.md` },
+  { title: 'Thinking switch and copy icon', desc: 'Implementation notes for the sidebar controls.', href: `${SITE.docsDev}ThinkingSwitchAndCopyIcon.md` },
+  { title: 'Copy-icon fix and Thinking indicator', desc: 'History and fixes for the copy and thinking UX.', href: `${SITE.docsDev}CopyFixAndThinkingIndicator.md` },
+  { title: 'UI improvements', desc: 'Notes on the sidebar UI evolution.', href: `${SITE.docsDev}UiImprovements.md` },
+] as const;
+---
+<BaseLayout
+  title="Docs — Study Agent"
+  description="Study Agent documentation: user guides for how it works, skills, and providers, plus developer docs for the codebase."
+  path="docs/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Docs</h1>
+      <p>
+        The full documentation lives with the plugin on GitHub —
+        <a href={SITE.github} target="_blank" rel="noopener">ameen278/Study-Agent</a>.
+        Start with the guides below; developer docs are linked for contributors.
+      </p>
+    </div>
+
+    <section class="block">
+      <h2>How to use</h2>
+      <div class="grid grid-3">
+        {GUIDES.map((g) => (
+          <a class="card card-link" href={g.href} target="_blank" rel="noopener">
+            <h3>{g.title} ↗</h3>
+            <p>{g.desc}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Code explained (developer docs)</h2>
+      <div class="grid grid-3">
+        {DEV.map((g) => (
+          <a class="card card-link" href={g.href} target="_blank" rel="noopener">
+            <h3>{g.title} ↗</h3>
+            <p>{g.desc}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Contributing</h2>
+      <p class="text-muted w-760">
+        The plugin is GPL-3.0-or-later. To build from source:
+      </p>
+      <div class="code-block">
+        <div class="code-head"><span>Terminal</span></div>
+        <pre><code>npm install
+npm run dev      # rebuild on change
+npm run build    # type-check and production bundle
+npm run lint     # ESLint with Obsidian rules</code></pre>
+      </div>
+      <p>
+        <a href={SITE.github} target="_blank" rel="noopener">Browse the code</a> ·
+        <a href={SITE.issues} target="_blank" rel="noopener">Report a bug or request a feature</a> ·
+        <a href={SITE.releases} target="_blank" rel="noopener">Releases</a>
+      </p>
+      <p class="text-muted">
+        Project: <a href={SITE.pluginPage} target="_blank" rel="noopener">Study Agent on Obsidian Community</a> ·
+        Author: <a href="https://github.com/ameen278" target="_blank" rel="noopener">Ameen (ameen278)</a> ·
+        License: {SITE.license}
+      </p>
+    </section>
+  </div>
+</BaseLayout>

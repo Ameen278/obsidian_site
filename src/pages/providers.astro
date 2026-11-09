@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Callout from '../components/Callout.astro';
+import { PROVIDERS, SITE } from '../data/site';
+---
+<BaseLayout
+  title="Providers — Study Agent"
+  description="Ollama local, OpenAI, Claude, OpenRouter, Groq, Gemini, and custom OpenAI-compatible servers — setup and privacy per provider."
+  path="providers/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>AI Providers</h1>
+      <p>
+        Study Agent works with local and cloud models. Ollama is the default — everything
+        stays on your machine. Cloud providers are opt-in and need an API key.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Provider</th><th>Local?</th><th>You need</th><th>Notes</th></tr></thead>
+        <tbody>
+          {PROVIDERS.map((p) => (
+            <tr>
+              <td>{p.name}</td>
+              <td>
+                {p.local === true && <span class="pill pill-local">Local</span>}
+                {p.local === false && <span class="pill pill-cloud">Cloud</span>}
+                {p.local === 'depends' && <span class="pill pill-cloud">Depends</span>}
+              </td>
+              <td>{p.needs}</td>
+              <td>{p.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <h2>Ollama (default, local)</h2>
+      <p>
+        Install <a href={SITE.ollamaDownload} target="_blank" rel="noopener">Ollama</a>,
+        run <code>ollama serve</code>, pull a model, then point the plugin at
+        <code>http://localhost:11434</code> and Refresh the model list. Nothing leaves
+        your machine. Thinking models additionally support
+        <strong>Enable thinking</strong> for reasoning before replying.
+      </p>
+
+      <h2>Cloud providers</h2>
+      <p>
+        Pick the provider in settings, paste your API key, Refresh, and select a model.
+        Messages — plus the study-assistant identity, selected skill, custom instructions,
+        and active-file context when enabled — are sent to that provider's servers.
+        Per-provider protocol and privacy details:
+        <a href={SITE.guideProviders} target="_blank" rel="noopener">AI providers guide</a>.
+      </p>
+
+      <h2>Custom (OpenAI-compatible)</h2>
+      <p>
+        Any server speaking the OpenAI chat API works — LM Studio
+        (<code>http://localhost:1234/v1</code>), vLLM, Ollama's OpenAI endpoint, and more.
+        Custom servers may block streaming via CORS; the plugin then automatically falls
+        back to a non-streaming request (which can't be cancelled once started).
+      </p>
+
+      <Callout title="Gemini keys">
+        <p>
+          Google now issues new <code>AQ.</code> keys, and older keys may be blocked with
+          HTTP 401. If Gemini rejects your key, create a fresh one in Google AI Studio
+          and paste it again.
+        </p>
+      </Callout>
+
+      <Callout variant="info" title="Each provider remembers its own setup">
+        <p>
+          Base URL, API key, and model are saved <em>per provider</em>, so switching
+          between local and cloud doesn't lose your local configuration.
+        </p>
+      </Callout>
+    </div>
+  </div>
+</BaseLayout>

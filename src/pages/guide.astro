@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import Screenshot from '../components/Screenshot.astro';
+import { SITE, withBase } from '../data/site';
+---
+<BaseLayout
+  title="Guide — Using Study Agent"
+  description="How to chat, ground answers in the active note, use thinking mode, switch skills, and copy replies in Study Agent."
+  path="guide/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Guide</h1>
+      <p>
+        Daily workflows: chatting, grounding answers in your notes, switching study
+        modes, and getting more from every reply.
+      </p>
+    </div>
+
+    <div class="prose">
+      <h2>Chat basics</h2>
+      <ul>
+        <li>Open the sidebar with the bot ribbon icon or the <code>Open local study AI</code> command.</li>
+        <li>Check the <code>Provider · model</code> line under the input — it shows exactly what your next message will use.</li>
+        <li>Type and press <strong>Enter</strong> to send; <strong>Shift+Enter</strong> adds a new line.</li>
+        <li>While the model works, the input disables and a pulsing <code>Thinking…</code> shows until the first token. The reply then streams in, and Send becomes <strong>Stop</strong>.</li>
+        <li>If streaming is blocked (usually CORS on custom servers), the plugin automatically falls back to a non-streaming request.</li>
+        <li>Conversation history is kept in memory until the sidebar reopens or the plugin unloads.</li>
+      </ul>
+      <Screenshot
+        src="images/screenshot-1.jpg"
+        alt="Study Agent sidebar with a streaming Markdown reply"
+        caption="Streaming replies render Markdown live as tokens arrive."
+      />
+
+      <h2>Ground answers in the open note</h2>
+      <p>
+        Turn on <strong>Use Active File as Context</strong> (the switch under the input) and keep
+        a Markdown note open. Its beginning — up to <strong>20,000 characters</strong> — is attached
+        to every request, and the assistant treats it as the primary source when answering
+        questions about that note.
+      </p>
+      <CodeBlock title="Example prompt" lang="text" code={"Summarize this lecture note into 5 bullet points and turn point 3 into a quiz question."} />
+
+      <h2>Letting models think</h2>
+      <p>
+        <strong>Enable thinking</strong> (Ollama only) lets thinking models reason before
+        answering: slower, but often better for hard problems. The switch is hidden for
+        other providers and stays in sync with the settings tab.
+      </p>
+
+      <h2>Switch modes with Skills</h2>
+      <p>
+        Pick a mode with the <strong>Skill</strong> dropdown:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Skill</th><th>Best for</th></tr></thead>
+          <tbody>
+            <tr><td>Study help</td><td>General questions, explanations, and how-to help while studying.</td></tr>
+            <tr><td>Revision</td><td>Quizzing yourself, active recall, and exam-style review.</td></tr>
+            <tr><td>Summarize</td><td>Condensing long notes into key points.</td></tr>
+            <tr><td>None</td><td>No skill focus — the plain study-assistant prompt.</td></tr>
+            <tr><td>Custom skills</td><td>Your own modes, created in settings. See the <a href={SITE.guideSkills} target="_blank" rel="noopener">Skills guide</a>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The selected skill applies to every message until you change it or select
+        <em>None</em>, and it resets when the sidebar reopens.
+      </p>
+
+      <h2>Add your own instructions</h2>
+      <p>
+        In <strong>Settings → Community plugins → Study Agent</strong>, type into
+        <strong>Custom instructions</strong>. The text is appended to every request after the
+        built-in study-assistant prompt, so preferences like “always answer in bullets” or
+        “explain like I'm 15” apply everywhere. Note: it is sent to your AI provider with
+        your messages.
+      </p>
+
+      <h2>Copy replies</h2>
+      <ul>
+        <li>Hover any reply to reveal the copy icon.</li>
+        <li>Click it to copy the reply's raw Markdown — the partial text while streaming.</li>
+        <li>Select part of a reply first to copy just that selection.</li>
+      </ul>
+
+      <h2>How the agent works</h2>
+      <p>
+        Every message is answered under an always-on study-assistant prompt, plus the
+        selected skill, your custom instructions, and the open note when context is on.
+        The request goes to your chosen provider and streams back token by token.
+        Full walkthrough: <a href={SITE.guideHowItWorks} target="_blank" rel="noopener">How the agent works</a>.
+      </p>
+      <p>
+        <a href={withBase('providers/')}>Compare providers →</a>
+        <a href={withBase('troubleshooting/')}>Troubleshooting →</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

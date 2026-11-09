@@ -1,0 +1,52 @@
+---
+import { SITE, withBase } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Study Agent</h4>
+        <p class="text-muted footer-blurb">
+          A local-first AI study assistant for Obsidian. Chat with Ollama locally
+          by default — or bring your own cloud API key.
+        </p>
+        <p class="text-muted footer-note-sm">
+          v{SITE.version} · Obsidian {SITE.minObsidian}+ · {SITE.license}
+        </p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href={withBase('features/')}>Features</a></li>
+          <li><a href={withBase('get-started/')}>Get Started</a></li>
+          <li><a href={withBase('guide/')}>Guide</a></li>
+          <li><a href={withBase('providers/')}>Providers</a></li>
+          <li><a href={withBase('docs/')}>Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Plugin</h4>
+        <ul>
+          <li><a href={SITE.pluginPage} target="_blank" rel="noopener">Obsidian plugin page</a></li>
+          <li><a href={SITE.github} target="_blank" rel="noopener">GitHub repository</a></li>
+          <li><a href={SITE.releases} target="_blank" rel="noopener">Releases</a></li>
+          <li><a href={SITE.issues} target="_blank" rel="noopener">Issues &amp; features</a></li>
+          <li><a href={withBase('privacy/')}>Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href={withBase('troubleshooting/')}>Troubleshooting</a></li>
+          <li><a href={SITE.guideHowItWorks} target="_blank" rel="noopener">How it works</a></li>
+          <li><a href={SITE.guideSkills} target="_blank" rel="noopener">Skills guide</a></li>
+          <li><a href={SITE.guideProviders} target="_blank" rel="noopener">AI providers guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-note">
+      Study Agent is an independent community plugin, not affiliated with Obsidian or any AI provider.
+      Screenshots © the plugin author, shown for documentation purposes.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "title": "Design System: Study Agent",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Obsidian Purple",
+        "canonical": "oklch(0.62 0.19 277)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 277)",
+          "oklch(0.3 0.1 277)",
+          "oklch(0.45 0.16 277)",
+          "oklch(0.55 0.19 277)",
+          "oklch(0.62 0.19 277)",
+          "oklch(0.72 0.15 278)",
+          "oklch(0.85 0.08 278)",
+          "oklch(0.95 0.03 278)"
+        ]
+      },
+      "primary-light": {
+        "role": "primary",
+        "displayName": "Obsidian Purple Light",
+        "canonical": "oklch(0.72 0.15 278)",
+        "tonalRamp": [
+          "oklch(0.3 0.08 278)",
+          "oklch(0.45 0.12 278)",
+          "oklch(0.58 0.15 278)",
+          "oklch(0.66 0.16 278)",
+          "oklch(0.72 0.15 278)",
+          "oklch(0.8 0.11 278)",
+          "oklch(0.88 0.06 278)",
+          "oklch(0.96 0.02 278)"
+        ]
+      },
+      "vault-night": {
+        "role": "neutral",
+        "displayName": "Vault Night",
+        "canonical": "oklch(0.16 0.02 277)",
+        "tonalRamp": [
+          "oklch(0.1 0.01 270)",
+          "oklch(0.16 0.02 277)",
+          "oklch(0.22 0.03 270)",
+          "oklch(0.35 0.03 270)",
+          "oklch(0.55 0.02 270)",
+          "oklch(0.72 0.02 270)",
+          "oklch(0.86 0.01 270)",
+          "oklch(0.96 0 270)"
+        ]
+      },
+      "vault-card": {
+        "role": "neutral",
+        "displayName": "Vault Card",
+        "canonical": "oklch(0.22 0.03 270)",
+        "tonalRamp": [
+          "oklch(0.12 0.02 270)",
+          "oklch(0.18 0.03 270)",
+          "oklch(0.22 0.03 270)",
+          "oklch(0.32 0.03 270)",
+          "oklch(0.5 0.02 270)",
+          "oklch(0.68 0.02 270)",
+          "oklch(0.84 0.01 270)",
+          "oklch(0.95 0 270)"
+        ]
+      },
+      "vault-text": {
+        "role": "neutral",
+        "displayName": "Vault White",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": [
+          "oklch(0.3 0 0)",
+          "oklch(0.45 0 0)",
+          "oklch(0.6 0 0)",
+          "oklch(0.72 0 0)",
+          "oklch(0.84 0 0)",
+          "oklch(0.92 0 0)",
+          "oklch(0.97 0 0)",
+          "oklch(1 0 0)"
+        ]
+      },
+      "vault-muted": {
+        "role": "neutral",
+        "displayName": "Ashen Lavender",
+        "canonical": "oklch(0.78 0.03 277)",
+        "tonalRamp": [
+          "oklch(0.25 0.02 277)",
+          "oklch(0.4 0.03 277)",
+          "oklch(0.55 0.03 277)",
+          "oklch(0.68 0.03 277)",
+          "oklch(0.78 0.03 277)",
+          "oklch(0.86 0.02 277)",
+          "oklch(0.93 0.01 277)",
+          "oklch(0.98 0.005 277)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero H1 only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section H2 headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and sub-section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, badges, captions, table headers."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code and terminal snippets only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-lift",
+        "value": "0 24px 60px rgba(0,0,0,0.45)",
+        "purpose": "Screenshot frames and chat mock only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for state transitions."
+      },
+      {
+        "name": "pulse-thinking",
+        "value": "pulse 1.6s ease-in-out infinite",
+        "purpose": "Thinking indicator in the chat mock."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "860px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action \u2014 Get Started, install, download.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get started</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; font-weight: 600; background: #7c3aed; color: #fff; text-decoration: none; transition: transform .15s ease, background .15s ease; } .ds-btn-primary:hover { background: #6d28d9; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action \u2014 GitHub, plugin page, docs links.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">GitHub</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; font-weight: 600; background: #1c1930; color: #fffffe; border: 1px solid #2e2a4a; text-decoration: none; transition: transform .15s ease, background .15s ease; } .ds-btn-ghost:hover { background: #241f42; transform: translateY(-1px); } .ds-btn-ghost:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Feature and content container \u2014 flat tonal surface, no shadow.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Local by default</h3><p class=\"ds-card-body\">Requests go only to your machine at localhost:11434.</p></div>",
+      "css": ".ds-card { background: #1c1930; border: 1px solid #2e2a4a; border-radius: 14px; padding: 24px; } .ds-card-title { margin: 0 0 8px; font-size: 1.2rem; font-weight: 700; color: #fffffe; } .ds-card-body { margin: 0; color: #b8b5cc; line-height: 1.65; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Version / fact pill in the hero and metadata rows.",
+      "html": "<span class=\"ds-badge\">v1.0.1</span>",
+      "css": ".ds-badge { display: inline-block; font-size: .82rem; padding: 5px 12px; border-radius: 999px; border: 1px solid #2e2a4a; background: #1c1930; color: #b8b5cc; }"
+    },
+    {
+      "name": "Provider Pill \u2014 Local",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Semantic pill marking a local (private) provider. Cloud variant uses amber.",
+      "html": "<span class=\"ds-pill-local\">Local</span>",
+      "css": ".ds-pill-local { display: inline-block; font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: rgba(52,211,153,.15); color: #6ee7b7; border: 1px solid rgba(52,211,153,.4); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "button-ghost",
+      "description": "Header navigation item, including current-page state.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\" aria-current=\"page\">Features</a>",
+      "css": ".ds-nav-link { padding: 8px 12px; border-radius: 8px; color: #b8b5cc; font-size: .95rem; text-decoration: none; } .ds-nav-link:hover { color: #fffffe; background: rgba(139,92,246,.14); } .ds-nav-link[aria-current=\"page\"] { color: #fffffe; background: rgba(139,92,246,.14); box-shadow: inset 0 0 0 1px #2e2a4a; } .ds-nav-link:focus-visible { outline: 2px solid #a78bfa; outline-offset: 3px; }"
+    },
+    {
+      "name": "Code Block",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Terminal and path snippets with a copy button.",
+      "html": "<div class=\"ds-code\"><div class=\"ds-code-head\"><span>Terminal</span><button type=\"button\" class=\"ds-code-btn\">Copy</button></div><pre class=\"ds-code-pre\"><code>ollama pull llama3.2</code></pre></div>",
+      "css": ".ds-code { background: #12101d; border: 1px solid #2e2a4a; border-radius: 14px; overflow: hidden; } .ds-code-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #2e2a4a; font-size: .85rem; color: #b8b5cc; } .ds-code-btn { background: #1c1930; color: #fffffe; border: 1px solid #2e2a4a; border-radius: 8px; padding: 5px 12px; cursor: pointer; font-size: .82rem; } .ds-code-btn:hover { background: #241f42; } .ds-code-pre { margin: 0; padding: 18px; overflow-x: auto; line-height: 1.55; color: #fffffe; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .92rem; }"
+    },
+    {
+      "name": "Chat Mock",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Signature illustration of the Study Agent sidebar conversation.",
+      "html": "<div class=\"ds-chat\"><div class=\"ds-chat-body\"><div class=\"ds-msg-user\">Explain the forgetting curve, then quiz me.</div><div class=\"ds-msg-ai\">Based on your active note:<ul><li>Memory decays exponentially</li><li>Review before you forget</li></ul></div></div><div class=\"ds-chat-input\"><span>Ask anything\u2026</span><span class=\"ds-chat-model\">Ollama \u00b7 llama3.2</span></div></div>",
+      "css": ".ds-chat { background: #12101d; border: 1px solid #2e2a4a; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.45); } .ds-chat-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; } .ds-msg-user { align-self: flex-end; max-width: 85%; padding: 12px 16px; border-radius: 14px; border-bottom-right-radius: 4px; background: #8b5cf6; color: #fff; font-size: .95rem; line-height: 1.55; } .ds-msg-ai { align-self: flex-start; max-width: 85%; padding: 12px 16px; border-radius: 14px; border-bottom-left-radius: 4px; background: #1c1930; border: 1px solid #2e2a4a; color: #fffffe; font-size: .95rem; line-height: 1.55; } .ds-msg-ai ul { margin: 8px 0 4px; padding-left: 20px; color: #b8b5cc; } .ds-chat-input { display: flex; gap: 10px; align-items: center; padding: 14px 20px; border-top: 1px solid #2e2a4a; color: #b8b5cc; font-size: .9rem; } .ds-chat-model { margin-left: auto; font-size: .8rem; color: #c4b5fd; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Vault",
+    "overview": "The site is a quiet obsidian vault after hours: deep indigo-black surfaces, one restrained purple accent, and nothing competing for attention. It should feel like opening Obsidian at night \u2014 familiar, focused, and trustworthy \u2014 because the product promise is local-first privacy. Every design choice defers to that: calm over loud, precise over decorative, restrained over expressive. Density is low and breathing room is generous. The system uses flat tonal layering (successive dark purples) instead of shadows, a single accent used sparingly, and a native system font stack so the page renders instantly with no webfont dependency. Motion is minimal and purposeful \u2014 a soft pulse on the thinking indicator, a one-pixel lift on buttons \u2014 and always respects reduced-motion.",
+    "keyCharacteristics": [
+      "Dark vault surfaces with one accent, used rarely",
+      "Flat tonal layering; shadows only on screenshots and chat panels",
+      "Native system type; hierarchy from size and weight only",
+      "Refined and restrained components; no decoration for its own sake",
+      "Accessible by default: focus rings, skip link, reduced-motion support"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Obsidian Purple is the only chromatic accent. If a screen needs emphasis beyond the accent, use weight, size, or placement \u2014 never a second hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tonal Ladder Rule",
+        "body": "Surfaces step through Vault Night \u2192 Vault Soft \u2192 Vault Card \u2192 Vault Code. Don't introduce a surface outside this ladder.",
+        "section": "colors"
+      },
+      {
+        "name": "The Native Type Rule",
+        "body": "No webfonts. If a future display face is ever adopted, it must be a deliberate exception, not a default.",
+        "section": "typography"
+      },
+      {
+        "name": "The Quiet Hierarchy Rule",
+        "body": "Emphasis is size and weight only \u2014 no uppercase labels, no letterspaced kickers, no italic display text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. The only shadow in the system is Panel Lift, reserved for product captures.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the accent to one voice per screen \u2014 primary CTA, brand mark, or hero phrase, not all three at once.",
+      "Do step surfaces through the tonal ladder (Night \u2192 Soft \u2192 Card \u2192 Code) and separate them with 1px Vault Border strokes.",
+      "Do let Panel Lift shadow appear only on screenshot frames and the chat mock.",
+      "Do use the system stack and size/weight hierarchy; keep prose near 65\u201375ch.",
+      "Do honor reduced-motion (pulse and smooth scroll off) and visible focus rings on every interactive element.",
+      "Do use the stroke SVG icon set (1.8px, currentColor, Obsidian Purple Text) for feature icons."
+    ],
+    "donts": [
+      "Don't introduce a second accent hue (beyond the semantic Local/Cloud pills and the Warn Amber callout edge).",
+      "Don't add shadows to cards, buttons, or nav \u2014 flat tonal layering carries depth.",
+      "Don't load a webfont or use uppercase letterspaced labels without a deliberate brand exception.",
+      "Don't use sharp corners or borderless cards; 14px radius and 1px borders are the form language.",
+      "Don't invent testimonials, benchmarks, or evidence \u2014 PRODUCT.md forbids fabricating them, and the visual system must not imply them.",
+      "Don't use gradient text \u2014 emphasis comes from weight, size, or solid accent color.",
+      "Don't use emoji or unicode glyphs as icons; draw stroke SVGs instead.",
+      "Don't use a thick colored edge (border-left/right above 1px) on callouts or cards; use a full 1px border."
+    ]
+  }
+}

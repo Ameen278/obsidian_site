@@ -1,0 +1,21 @@
+---
+import { withBase } from '../data/site';
+
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+<figure class="figure-reset">
+  <div class="shot-frame">
+    <div class="shot-bar" aria-hidden="true">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="ml-sm">Obsidian — Study Agent</span>
+    </div>
+    <img src={withBase(src)} alt={alt} loading="lazy" width="828" height="465" />
+  </div>
+  {caption && <figcaption class="shot-caption">{caption}</figcaption>}
+</figure>

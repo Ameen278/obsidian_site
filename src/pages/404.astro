@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../data/site';
+---
+<BaseLayout title="Page not found — Study Agent" path="404/">
+  <div class="wrap">
+    <div class="page-head text-center">
+      <h1>404 — Page not found</h1>
+      <p class="text-muted">
+        That page doesn't exist. Head back to the
+        <a href={withBase('')}>home page</a> or browse
+        <a href={withBase('features/')}>features</a> and the
+        <a href={withBase('guide/')}>guide</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

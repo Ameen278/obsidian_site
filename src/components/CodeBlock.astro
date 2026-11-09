@@ -1,0 +1,32 @@
+---
+interface Props {
+  code: string;
+  title?: string;
+  lang?: string;
+}
+
+const { code, title = 'Terminal', lang = 'bash' } = Astro.props;
+const id = `code-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class="code-block">
+  <div class="code-head">
+    <span>{title}</span>
+    <button type="button" data-copy={id}>Copy</button>
+  </div>
+  <pre><code id={id} data-lang={lang}>{code}</code></pre>
+</div>
+<script is:inline>
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const target = document.getElementById(btn.getAttribute('data-copy'));
+      if (!target) return;
+      try {
+        await navigator.clipboard.writeText(target.textContent ?? '');
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = 'Copy'), 1600);
+      } catch {
+        btn.textContent = 'Copy failed';
+      }
+    });
+  });
+</script>

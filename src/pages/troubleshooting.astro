@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../data/site';
+---
+<BaseLayout
+  title="Troubleshooting — Study Agent"
+  description="Fix common Study Agent issues: plugin not loading, empty model list, rejected API keys, non-streaming replies, and lost conversations."
+  path="troubleshooting/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Troubleshooting</h1>
+      <p>
+        The five most common issues and how to fix each. Still stuck?
+        <a href={SITE.issues} target="_blank" rel="noopener">Open an issue on GitHub</a>.
+      </p>
+    </div>
+
+    <div class="prose prose-wide">
+      <Faq
+        items={[
+          {
+            q: 'The plugin does not appear or does not load',
+            a: 'Run npm run build and confirm main.js, manifest.json, and styles.css are in <Vault>/.obsidian/plugins/study-agent/. Reload Obsidian, then check Settings → Community plugins for an error message.',
+          },
+          {
+            q: 'The Model list is empty or Refresh fails',
+            a: 'Make sure the server is running (ollama serve for local setups) and the API key and Base URL are correct, then click Refresh. A saved model that disappeared upstream shows as “name (not listed)” — pick another model or pull it with ollama pull <model>.',
+          },
+          {
+            q: '“Rejected the API key” or HTTP 401 from a cloud provider',
+            a: 'Re-check the key. For Gemini, Google now issues new AQ. keys and older keys may be blocked — create a fresh key in Google AI Studio and paste it again. See the AI providers guide for per-provider notes.',
+          },
+          {
+            q: 'The reply arrives all at once instead of streaming',
+            a: 'Streaming was blocked (usually CORS on custom servers). The plugin already retried over the non-streaming path — the result is the same, but that path cannot be cancelled once started. Check your custom server’s CORS settings if you need streaming.',
+          },
+          {
+            q: 'The conversation disappeared',
+            a: 'History lives only in memory and resets when the sidebar reopens — by design. Copy any reply you want to keep (hover → copy icon) before closing the sidebar. Conversations are not saved to disk.',
+          },
+          {
+            q: 'Thinking mode seems to do nothing with a cloud provider',
+            a: 'Enable thinking applies to Ollama models only. Cloud providers ignore it — Claude’s extended thinking is not wired up. Switch to a local thinking model in Ollama if you want reasoning before replies.',
+          },
+        ]}
+      />
+
+      <h2>Limitations to know</h2>
+      <ul>
+        <li>Conversations are not saved.</li>
+        <li>The non-streaming fallback path (<code>requestUrl</code>) cannot be cancelled; the streaming path is cancellable via <strong>Stop</strong>.</li>
+        <li>Thinking mode applies to every Ollama model and message; it is ignored by cloud providers.</li>
+        <li>The built-in study-assistant prompt is fixed; only <strong>Custom instructions</strong> are user-editable. Sampling options (temperature, max tokens) are not exposed yet.</li>
+        <li>The selected skill is view state: it resets to <strong>None</strong> when the sidebar reopens.</li>
+      </ul>
+
+      <p>
+        Deeper help:
+        <a href={SITE.guideHowItWorks} target="_blank" rel="noopener">How the agent works</a> ·
+        <a href={SITE.guideSkills} target="_blank" rel="noopener">Skills</a> ·
+        <a href={SITE.guideProviders} target="_blank" rel="noopener">AI providers</a> ·
+        <a href={SITE.issues} target="_blank" rel="noopener">GitHub issues</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

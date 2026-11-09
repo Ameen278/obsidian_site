@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import Callout from '../components/Callout.astro';
+import { SITE, withBase } from '../data/site';
+---
+<BaseLayout
+  title="Get Started — Install Study Agent"
+  description="Install Study Agent in Obsidian, set up local Ollama chat, and optionally connect a cloud AI provider."
+  path="get-started/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Get Started</h1>
+      <p>
+        From zero to your first streamed reply in about five minutes.
+        Local chat needs no account and no API key.
+      </p>
+    </div>
+
+    <div class="prose">
+      <h2>Requirements</h2>
+      <ul>
+        <li>Obsidian <strong>{SITE.minObsidian}</strong> or newer.</li>
+        <li>For local chat: <a href={SITE.ollamaDownload} target="_blank" rel="noopener">Ollama</a> installed and running, with at least one chat model pulled.</li>
+        <li>For cloud chat: an account and API key with the provider of your choice.</li>
+      </ul>
+
+      <h2>Step 1 — Pull a model (Ollama)</h2>
+      <CodeBlock title="Terminal" code={"ollama pull qwen2.5-coder:1.5b\nollama serve"} />
+      <p>Start Ollama and pull any chat model. The plugin's default model is <code>llama3.2</code> — pull that too if you want the default to work:</p>
+      <CodeBlock title="Terminal" code={"ollama pull llama3.2"} />
+
+      <h2>Step 2 — Install the plugin</h2>
+      <p>Download a release (or build from source — see <a href={SITE.github} target="_blank" rel="noopener">Development</a> on GitHub), then:</p>
+      <ol class="steps">
+        <li>
+          <p><strong>Copy the three files</strong> into your vault:</p>
+          <CodeBlock title="Vault path" lang="text" code={"<Vault>/.obsidian/plugins/study-agent/\n  ├── main.js\n  ├── manifest.json\n  └── styles.css"} />
+        </li>
+        <li><p><strong>Reload Obsidian</strong> (Command palette → “Reload app”).</p></li>
+        <li><p><strong>Enable it:</strong> Settings → Community plugins → turn on <em>Study Agent</em>.</p></li>
+      </ol>
+      <Callout variant="info" title="Already in Obsidian?">
+        <p>
+          You can also open the plugin page directly:
+          <a href={SITE.addToObsidian}>Add Study Agent to Obsidian</a> — if Obsidian prompts
+          to open the app, accept, then install from there.
+        </p>
+      </Callout>
+
+      <h2>Step 3 — Connect Ollama (default, local)</h2>
+      <ol class="steps">
+        <li><p>Make sure Ollama is running: <code>ollama serve</code></p></li>
+        <li><p>Open <strong>Settings → Community plugins → Study Agent</strong>.</p></li>
+        <li><p>Keep <strong>AI provider</strong> on <em>Ollama (local)</em>.</p></li>
+        <li><p>Set <strong>Base URL</strong> to your server, usually <code>http://localhost:11434</code>.</p></li>
+        <li><p>Click <strong>Refresh</strong> and pick a model from the <strong>Model</strong> dropdown.</p></li>
+        <li><p>Leave <strong>Enable thinking</strong> off for faster answers; turn it on for harder problems.</p></li>
+      </ol>
+      <p>
+        If a saved model isn't installed, the dropdown shows it as
+        <code>name (not listed)</code> — pick another model or pull it with
+        <code>ollama pull &lt;model&gt;</code>, then click <strong>Refresh</strong> again.
+      </p>
+
+      <h2>Step 4 — (Optional) Connect a cloud provider</h2>
+      <ol class="steps">
+        <li><p>Open the same settings tab and pick a provider from <strong>AI provider</strong> (OpenAI, Claude, OpenRouter, Groq, Gemini).</p></li>
+        <li><p>Paste your <strong>API key</strong>.</p></li>
+        <li><p>Click <strong>Refresh</strong> and select a model.</p></li>
+      </ol>
+      <p>
+        <em>Custom (OpenAI-compatible)</em> works the same way but also asks for a
+        <strong>Base URL</strong> (e.g. <code>http://localhost:1234/v1</code> for LM Studio).
+        Details and privacy notes per provider:
+        <a href={SITE.guideProviders} target="_blank" rel="noopener">AI providers guide</a>.
+      </p>
+      <Callout title="API keys are stored in plain text">
+        <p>
+          Keys live in the vault's plugin <code>data.json</code>. Anyone with access to that
+          file can read them — there is no secure key store in Obsidian. See
+          <a href={withBase('privacy/')}>Privacy</a> before using cloud providers on shared machines.
+        </p>
+      </Callout>
+
+      <h2>Step 5 — Open the sidebar</h2>
+      <p>
+        Click the bot ribbon icon, or run <code>Open local study AI</code> from the command
+        palette. Check the <code>Provider · model</code> line under the input, then type and
+        press <strong>Enter</strong> (<strong>Shift+Enter</strong> for a new line).
+      </p>
+      <p>
+        Next: learn <a href={withBase('guide/')}>chat, context, and skills</a>, or compare
+        <a href={withBase('providers/')}>all providers</a>. Stuck?
+        <a href={withBase('troubleshooting/')}>Troubleshooting</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

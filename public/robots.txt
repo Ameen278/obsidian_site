@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ameen278.github.io/obsidian_site/sitemap.xml

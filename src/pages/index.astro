@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Screenshot from '../components/Screenshot.astro';
+import { SITE, withBase } from '../data/site';
+---
+<BaseLayout path="">
+  <div class="wrap">
+    <section class="hero">
+      <img class="hero-logo" src={withBase('images/logo.png')} alt="Study Agent logo" width="96" height="96" />
+      <div class="badges">
+        <span class="badge">v{SITE.version}</span>
+        <span class="badge">Obsidian <strong>{SITE.minObsidian}+</strong></span>
+        <span class="badge"><strong>Local-first</strong> · Ollama by default</span>
+        <span class="badge">{SITE.license}</span>
+      </div>
+      <h1>Chat with a local AI,<br /><span class="grad">inside Obsidian</span></h1>
+      <p class="lead">
+        Study Agent adds a study-assistant sidebar to your vault. Ask questions, revise, and
+        summarize — with a local Ollama model by default, so nothing leaves your machine.
+        Prefer the cloud? Bring your own key for OpenAI, Claude, Gemini and more.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={withBase('get-started/')}>Get started</a>
+        <a class="btn btn-ghost" href={SITE.pluginPage} target="_blank" rel="noopener">Obsidian plugin page</a>
+        <a class="btn btn-ghost" href={SITE.github} target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="kbd-hint mt-md">
+        Already use Obsidian?
+        <a href={SITE.addToObsidian}>Add Study Agent to Obsidian</a>
+        — or install manually in <a href={withBase('get-started/')}>Get Started</a>.
+      </p>
+    </section>
+
+    <section class="block" aria-label="Study Agent in action">
+      <div class="shot-pair">
+        <Screenshot
+          src="images/screenshot-1.jpg"
+          alt="Study Agent chat sidebar inside Obsidian, streaming a Markdown reply"
+          caption="The Study Agent sidebar — streaming Markdown replies, token by token."
+        />
+        <div class="chat-mock" aria-label="Illustration of a Study Agent conversation">
+          <div class="shot-bar" aria-hidden="true">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="ml-sm">Study Agent</span>
+          </div>
+          <div class="chat-mock-body">
+            <div class="msg msg-user">Explain the forgetting curve from my notes, then quiz me.</div>
+            <div class="msg msg-ai">
+              Based on your active note:
+              <ul>
+                <li>Memory decays exponentially over time</li>
+                <li>Review just before you forget strengthens recall</li>
+                <li>Active recall beats re-reading</li>
+              </ul>
+              <span class="pulse">Thinking…</span>
+            </div>
+          </div>
+          <div class="chat-input" aria-hidden="true">
+            <span>Ask anything…</span>
+            <span class="chat-model">Ollama · llama3.2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="text-center">Why Study Agent?</h2>
+      <p class="section-lead">
+        Built for studying inside the vault you already use — private by default,
+        flexible when you want more power.
+      </p>
+      <div class="grid grid-3">
+        <FeatureCard icon="shield" title="Local by default">
+          <p>With the default Ollama provider, requests go only to your machine at
+          <code>localhost:11434</code>. Cloud providers are strictly opt-in.</p>
+        </FeatureCard>
+        <FeatureCard icon="chat" title="Streaming chat sidebar">
+          <p>Answers stream token by token with live Markdown — headings, tables,
+          lists and code. Stop a reply mid-stream; partial text is kept.</p>
+        </FeatureCard>
+        <FeatureCard icon="doc" title="Grounded in your note">
+          <p>Turn on <em>Use Active File as Context</em> and the assistant answers from
+          the note you have open (up to 20,000 characters).</p>
+        </FeatureCard>
+        <FeatureCard icon="target" title="Skills for study modes">
+          <p>Built-in <em>Study help</em>, <em>Revision</em> and <em>Summarize</em> skills,
+          plus custom skills you create yourself.</p>
+        </FeatureCard>
+        <FeatureCard icon="bot" title="Every provider you need">
+          <p>Ollama, OpenAI, Anthropic Claude, OpenRouter, Groq, Gemini, and any
+          OpenAI-compatible server (LM Studio, vLLM…) — each with its own saved model.</p>
+        </FeatureCard>
+        <FeatureCard icon="eye" title="Always know what answers">
+          <p>A live <code>Provider · model</code> line under the input updates instantly
+          when you change settings — no guessing which model replied.</p>
+        </FeatureCard>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="text-center">Up and running in minutes</h2>
+      <p class="section-lead">No account, no API key needed for local chat.</p>
+      <div class="grid grid-3">
+        <div class="card"><h3>1 · Install Ollama</h3><p>Install <a href={SITE.ollamaDownload} target="_blank" rel="noopener">Ollama</a> and pull a chat model, e.g. <code>ollama pull llama3.2</code>.</p></div>
+        <div class="card"><h3>2 · Add the plugin</h3><p>Copy <code>main.js</code>, <code>manifest.json</code> and <code>styles.css</code> into <code>.obsidian/plugins/study-agent/</code> and enable it.</p></div>
+        <div class="card"><h3>3 · Start chatting</h3><p>Open the sidebar from the ribbon icon, pick a model, and ask away. Cloud keys optional.</p></div>
+      </div>
+      <div class="cta-row mt-lg">
+        <a class="btn btn-primary" href={withBase('get-started/')}>Full install guide</a>
+        <a class="btn btn-ghost" href={withBase('features/')}>See all features</a>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="text-center">Private by design</h2>
+      <p class="section-lead">
+        No telemetry, no analytics. Chat history lives only in memory and is cleared
+        when the sidebar reopens. API keys stay in your vault's <code>data.json</code> —
+        read the <a href={withBase('privacy/')}>privacy notes</a> before using cloud providers.
+      </p>
+      <div class="grid grid-2">
+        <Screenshot
+          src="images/screenshot-2.jpg"
+          alt="Study Agent settings and model picker inside Obsidian"
+          caption="Model picker and provider settings — local first, cloud opt-in."
+        />
+        <div class="card">
+          <h3>Your vault, your call</h3>
+          <ul class="list-muted">
+            <li><strong class="text-strong">Ollama:</strong> messages stay on your machine.</li>
+            <li><strong class="text-strong">Cloud:</strong> only what you send — plus skills and active-file context when enabled.</li>
+            <li><strong class="text-strong">No tracking:</strong> nothing is collected beyond explicit requests.</li>
+          </ul>
+          <p><a href={withBase('providers/')}>Compare providers →</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

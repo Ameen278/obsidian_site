@@ -1,0 +1,52 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, withBase } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title = `${SITE.name} — ${SITE.tagline}`,
+  description = SITE.description,
+  path = '',
+} = Astro.props;
+
+const canonical = new URL(withBase(path), Astro.site).toString();
+const ogImage = new URL(withBase('images/screenshot-1.jpg'), Astro.site).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={withBase('favicon.png')} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#0f0e17" />
+  </head>
+  <body>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  <!-- impeccable-live-start -->
+<script is:inline src="http://localhost:8400/live.js?token=1bceb011-d70d-47fd-8f8d-7d26cc2b022f"></script>
+<!-- impeccable-live-end -->
+</body>
+</html>

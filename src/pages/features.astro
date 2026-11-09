@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import Screenshot from '../components/Screenshot.astro';
+import { withBase } from '../data/site';
+---
+<BaseLayout
+  title="Features — Study Agent for Obsidian"
+  description="Every Study Agent feature: chat sidebar, streaming, multi-provider support, skills, active-file context, thinking mode, and more."
+  path="features/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Features</h1>
+      <p>
+        Everything the plugin does, in one place. For step-by-step usage see the
+        <a href={withBase('guide/')}>Guide</a>; for provider setup see
+        <a href={withBase('providers/')}>Providers</a>.
+      </p>
+    </div>
+
+    <section class="block">
+      <div class="grid grid-3">
+        <FeatureCard icon="chat" title="Chat sidebar">
+          <p>Open from the bot ribbon icon or the <code>Open local study AI</code> command.
+          Conversation context is kept while the sidebar stays open.</p>
+        </FeatureCard>
+        <FeatureCard icon="bolt" title="Streaming replies">
+          <p>Answers appear token by token with live Markdown rendering — headings,
+          lists, tables, links and code blocks as they arrive.</p>
+        </FeatureCard>
+        <FeatureCard icon="stop" title="Stop mid-stream">
+          <p>The Send button becomes <strong>Stop</strong> while the model works.
+          Cancel any time; text already received is kept.</p>
+        </FeatureCard>
+        <FeatureCard icon="bot" title="Multiple providers">
+          <p>Ollama (local, default), OpenAI, Anthropic Claude, OpenRouter, Groq, Gemini
+          and custom OpenAI-compatible servers — each with its own saved base URL,
+          API key and model.</p>
+        </FeatureCard>
+        <FeatureCard icon="eye" title="Live Provider · model line">
+          <p>Under the input, always showing which model will answer your next message
+          (e.g. <code>Gemini · gemini-2.5-flash</code>). Updates instantly on settings change.</p>
+        </FeatureCard>
+        <FeatureCard icon="sparkles" title="Enable thinking (Ollama)">
+          <p>Lets thinking models reason before answering — slower, but often better for
+          hard problems. Synced between sidebar and settings; hidden for cloud providers.</p>
+        </FeatureCard>
+        <FeatureCard icon="doc" title="Use Active File as Context">
+          <p>Ground answers in the open note: its beginning (up to 20,000 characters) is
+          attached to every request as the primary source.</p>
+        </FeatureCard>
+        <FeatureCard icon="target" title="Skills">
+          <p>Built-in <em>Study help</em>, <em>Revision</em> and <em>Summarize</em>, plus
+          custom skills you create. The selected skill applies until changed.</p>
+        </FeatureCard>
+        <FeatureCard icon="pen" title="Custom instructions">
+          <p>Append your own preferences (“always answer in bullets”) to every request,
+          after the built-in study-assistant prompt.</p>
+        </FeatureCard>
+        <FeatureCard icon="refresh" title="Model picker + Refresh">
+          <p>Lists the models each provider offers, with a Refresh button to reload the
+          list from the server.</p>
+        </FeatureCard>
+        <FeatureCard icon="copy" title="Copy any reply">
+          <p>Hover a reply for the copy icon — copies raw Markdown, even mid-stream.
+          Select part of a reply first to copy just that part.</p>
+        </FeatureCard>
+        <FeatureCard icon="shield" title="Local-only by default">
+          <p>Requests go to the Ollama URL you configure. Cloud providers are opt-in,
+          and loading/error states appear directly in the chat.</p>
+        </FeatureCard>
+      </div>
+    </section>
+
+    <section class="block">
+      <Screenshot
+        src="images/screenshot-1.jpg"
+        alt="Study Agent sidebar streaming a Markdown reply in Obsidian"
+        caption="Streaming replies with live Markdown, the Provider · model line, and the Stop button."
+      />
+    </section>
+
+    <section class="block">
+      <h2>Settings at a glance</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Setting</th><th>Default</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>AI provider</td><td>Ollama (local)</td><td>Which backend to chat with.</td></tr>
+            <tr><td>Base URL</td><td>Per provider</td><td>Server address for the selected provider.</td></tr>
+            <tr><td>API key</td><td>Empty</td><td>Key for cloud providers (stored in plain text — see Privacy).</td></tr>
+            <tr><td>Model</td><td><code>llama3.2</code> (Ollama)</td><td>Model selected from the provider's list.</td></tr>
+            <tr><td>Enable thinking</td><td>Off</td><td>Lets Ollama thinking models reason before answering.</td></tr>
+            <tr><td>Custom instructions</td><td>Empty</td><td>Extra instructions appended to every request.</td></tr>
+            <tr><td>Custom skills</td><td>None</td><td>Your own entries in the Skill dropdown.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><a href={withBase('guide/')}>How to use these in practice →</a></p>
+    </section>
+  </div>
+</BaseLayout>

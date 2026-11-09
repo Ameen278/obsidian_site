@@ -1,0 +1,29 @@
+---
+import { NAV, withBase } from '../data/site';
+
+const current = Astro.url.pathname;
+function isActive(href: string): boolean {
+  const target = withBase(href);
+  if (href === '') return current === target || current === `${target}/`;
+  return current === target || current === `${target.replace(/\/$/, '')}/`;
+}
+---
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href={withBase('')} aria-label="Study Agent home">
+      <img class="brand-logo" src={withBase('images/logo.png')} alt="" width="36" height="36" />
+      <span>Study Agent <small>Obsidian plugin</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      {NAV.map((item) => (
+        <a
+          href={withBase(item.href)}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

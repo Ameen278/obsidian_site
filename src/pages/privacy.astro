@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Callout from '../components/Callout.astro';
+import { SITE } from '../data/site';
+---
+<BaseLayout
+  title="Privacy — Study Agent"
+  description="Study Agent privacy: local by default with Ollama, cloud opt-in, how API keys are stored, and what is never collected."
+  path="privacy/"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Privacy</h1>
+      <p>
+        Local-first by default. This page explains exactly what leaves your machine,
+        what doesn't, and what to watch out for.
+      </p>
+    </div>
+
+    <div class="prose">
+      <h2>Ollama (local) — nothing leaves your machine</h2>
+      <p>
+        With the default provider, messages are sent only to the Ollama URL you
+        configure. The default URL is <code>localhost</code>, so data stays on your
+        machine. No account, no cloud, no telemetry.
+      </p>
+
+      <h2>Cloud providers — opt-in, and what's sent</h2>
+      <p>
+        If you switch to OpenAI, Anthropic, OpenRouter, Groq, Gemini, or a custom URL,
+        the following are sent to that provider's servers:
+      </p>
+      <ul>
+        <li>Your messages</li>
+        <li>The built-in study-assistant identity prompt</li>
+        <li>Your selected skill and custom instructions</li>
+        <li>Active-file context, when <em>Use Active File as Context</em> is on</li>
+      </ul>
+      <p>
+        Ollama is the default precisely so nothing leaves your machine unless you
+        choose otherwise. Per-provider details:
+        <a href={SITE.guideProviders} target="_blank" rel="noopener">AI providers guide — privacy</a>.
+      </p>
+
+      <Callout title="API keys are stored in plain text">
+        <p>
+          Keys are saved in the vault's plugin <code>data.json</code>.
+          Anyone with access to that file can read them — Obsidian has no secure key
+          store. Don't sync an unencrypted vault containing cloud keys to shared
+          devices or public services, and rotate keys if you think a vault copy leaked.
+        </p>
+      </Callout>
+
+      <h2>What is never collected</h2>
+      <ul>
+        <li>No telemetry or analytics.</li>
+        <li>No vault contents beyond what you explicitly send.</li>
+        <li>Chat history is <strong>not written to disk</strong> — it lives in memory and is cleared when the view reopens.</li>
+      </ul>
+
+      <h2>Practical advice</h2>
+      <ul>
+        <li>Keep <em>Use Active File as Context</em> off for notes with sensitive content when using cloud providers.</li>
+        <li>Prefer fully local setups (Ollama, LM Studio) for private or exam material.</li>
+        <li>Review custom instructions — they're sent with every request.</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
